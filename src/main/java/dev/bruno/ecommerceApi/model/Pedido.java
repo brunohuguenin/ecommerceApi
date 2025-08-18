@@ -2,14 +2,17 @@ package dev.bruno.ecommerceApi.model;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Entity
-@Data
+@Table(name = "pedidos")
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Pedido {
 
     @Id
@@ -20,15 +23,10 @@ public class Pedido {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
-    @Column(nullable = false)
-    private LocalDateTime dataCriacao;
-
-    @Column(nullable = false)
-    private String status;
-
-    @Column(nullable = false)
-    private String statusPagamento;
-
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemPedido> itens = new ArrayList<>();
+    private Set<ItemPedido> itens;
+
+    private LocalDateTime dataPedido;
+
+    private Double valorTotal;
 }

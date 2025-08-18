@@ -1,13 +1,11 @@
 package dev.bruno.ecommerceApi.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
 public class Carrinho {
 
     @Id
@@ -15,9 +13,8 @@ public class Carrinho {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "carrinho", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "carrinho", cascade = CascadeType.ALL)
     private List<ItemCarrinho> itens = new ArrayList<>();
 }

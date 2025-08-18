@@ -1,10 +1,14 @@
 package dev.bruno.ecommerceApi.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
-@Data
+@Table(name = "pedido_itens")
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ItemPedido {
 
     @Id
@@ -19,10 +23,7 @@ public class ItemPedido {
     @JoinColumn(name = "produto_id", nullable = false)
     private Produto produto;
 
-    @Column(nullable = false)
     private Integer quantidade;
 
-    @Column(nullable = false)
     private Double precoUnitario;
-
 }

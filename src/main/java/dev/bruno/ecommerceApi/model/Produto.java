@@ -1,10 +1,14 @@
 package dev.bruno.ecommerceApi.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
-@Data
+@Table(name = "produtos")
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Produto {
 
     @Id
@@ -14,7 +18,6 @@ public class Produto {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
     private String descricao;
 
     @Column(nullable = false)
@@ -23,11 +26,27 @@ public class Produto {
     @Column(nullable = false)
     private Integer estoque;
 
-    public Long getId() {
-        return id;
+    public String getNome() {
+        return nome;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Double getPreco() {
+        return preco;
+    }
+
+    public Integer getEstoque() {
+        return estoque;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public void setEstoque(Integer estoque) {
+        this.estoque = estoque;
     }
 }
